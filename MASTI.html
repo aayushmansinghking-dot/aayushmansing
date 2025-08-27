@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Aayushman Friends</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ff6b6b, #fddb92, #4facfe, #43e97b);
+      font-family: Arial, sans-serif;
+      text-align: center;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    h1 {
+      font-weight: bold;
+      font-style: italic;
+    }
+    button, input {
+      padding: 12px 20px;
+      margin: 10px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: none;
+    }
+    button {
+      cursor: pointer;
+      background: #222;
+      color: white;
+    }
+    button:hover {
+      background: #444;
+    }
+    input {
+      border: 1px solid #333;
+      width: 250px;
+      text-transform: uppercase; /* force uppercase */
+    }
+    .page {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    .stayaway {
+      color: red;
+      font-size: 60px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>This website is created by Ayushman Singh</h1>
+
+  <!-- Page 1 -->
+  <div id="page1" class="page active">
+    <button onclick="goToPage(2)">ONLY AAYUSHMAN FRIENDS</button>
+  </div>
+
+  <!-- Page 2 -->
+  <div id="page2" class="page">
+    <form onsubmit="return checkCredentials()">
+      <input type="text" id="username" placeholder="ENTER YOUR NAME (IN CAPS)" required><br>
+      <input type="password" id="password" placeholder="ENTER PASSWORD (IN CAPS)" required><br>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <!-- Page 3 -->
+  <div id="page3" class="page">
+    <p id="welcomeMsg" style="font-size:22px; font-weight:bold;"></p>
+    <p id="regNumber" style="color:blue; font-size:26px;"></p>
+  </div>
+
+  <!-- Page for STAY AWAY -->
+  <div id="page4" class="page">
+    <p class="stayaway">STAY AWAY</p>
+  </div>
+
+  <script>
+    function goToPage(pageNumber) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page' + pageNumber).classList.add('active');
+    }
+
+    function checkCredentials() {
+      let name = document.getElementById("username").value.toUpperCase();
+      let pass = document.getElementById("password").value.toUpperCase();
+      let regNo = "";
+
+      if (name === "EKLAVYA" && pass === "PITBULL EKLAVYA") {
+        regNo = "PITBULL EKLAVYA";
+      } else if (name === "PIYUSH" && pass === "PUNDUCHERRY") {
+        regNo = "PUNDUCHERRY";
+      } else if (name === "ANSH" && pass === "NAKCHAPTA") {
+        regNo = "NAKCHAPTA";
+      } else if (name === "SATYAM" && pass === "BLACK PLASTIC") {
+        regNo = "BLACK PLASTIC";
+      } else if (name === "HIMANSHU" && pass === "BLACK DIAMOND") {
+        regNo = "BLACK DIAMOND";
+      } else if (name === "AYUSHMAN" && pass === "KING") {
+        regNo = "KING";
+      } else {
+        goToPage(4);
+        return false;
+      }
+
+      document.getElementById("welcomeMsg").innerText = "WELCOME MR " + name + ", YOUR REGISTRATION NUMBER IS:";
+      document.getElementById("regNumber").innerText = regNo;
+      goToPage(3);
+      return false; // prevent form reload
+    }
+  </script>
+</body>
+</html>
